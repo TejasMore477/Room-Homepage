@@ -3,9 +3,8 @@ import imageUrl1 from '/src/assets/images/desktop-image-hero-1.jpg'
 import imageUrl2 from '/src/assets/images/desktop-image-hero-2.jpg'
 import imageUrl3 from '/src/assets/images/desktop-image-hero-3.jpg'
 
-import rightArrow from '/src/assets/images/icon-angle-right.svg'
-import leftArrow from '/src/assets/images/icon-angle-left.svg'
 import Arrow from '/src/assets/images/icon-arrow.svg'
+import Botton from './Botton'
 
 function Changer() {
   const obj = [
@@ -38,32 +37,19 @@ function Changer() {
   const [ currentIndex, setCurrentIndex ] = useState(0)
 
   return (
-    <div className='grid grid-cols-[60%,40%] h-[70vh]'>
-      <img src={data[currentIndex].imageUrl} className=' h-full w-full object-cover object-center'></img>
-      <div className='flex flex-col justify-between'>
-        <div className='py-24 px-20 '>
-          <h1 className='pb-4 text-[2.3vw] font-bold leading-none text-Black'>{data[currentIndex].Title}</h1>
-          <p className='text-Dark-Gray h-48'>{data[currentIndex].desc}</p>
-          <h2 className='text-md font-semibold leading-none tracking-[1rem] uppercase flex hover:text-Very-Dark-Gray cursor-pointer'>Shop now 
+    <div className='grid md:grid-cols-[60%,40%] sm:grid-row-[50vh,50vh] lg:h-[70vh] md:h-[60vh] h-[95vh]'>
+      <img src={data[currentIndex].imageUrl} className='md:h-full sm:h-[50vh] h-[45vh] w-full object-cover object-center'></img>
+      <div className='flex flex-col justify-between sm:h-[40vh] h-[50vh]'>
+        <div className='lg:pt-24 lg:px-20 md:pt-12 md:px-10 sm:pt-8 sm:px-10 px-8 py-6'>
+          <h1 className='pb-4 lg:text-[2.3vw] md:text-[2.7vw] sm:text-[5vw] font-bold leading-none text-Black'>{data[currentIndex].Title}</h1>
+          <p className='text-Dark-Gray lg:h-56 md:h-64 sm:h-32 h-56'>{data[currentIndex].desc}</p>
+          <h2 className='lg:text-md font-semibold leading-none lg:tracking-[1rem] md:tracking-widest tracking-[1rem] uppercase flex hover:text-Very-Dark-Gray cursor-pointer'>Shop now 
             <span>
               <img src={Arrow} alt="" />
             </span>
           </h2>
         </div>
-        <div className='flex items-center justify-start w-full h-16'>
-          <img
-            src={leftArrow}
-            alt="Previous"
-            className='bg-black py-5 px-7 ease-in-out duration-500 hover:bg-very-dark-gray cursor-pointer border-r-[1px] border-dark-gray'
-            onClick={handlePrev}
-          />
-          <img
-            src={rightArrow}
-            alt="Next"
-            className='bg-black py-5 px-7 ease-in-out duration-500 hover:bg-very-dark-gray cursor-pointer'
-            onClick={handleNext}
-          />
-        </div>
+        <Botton handleNext={handleNext} handlePrev={handlePrev}/>
       </div>
     </div>
   )

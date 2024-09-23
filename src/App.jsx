@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 
 function App() {
   return (
-    <div className='max-w-screen-xl mx-auto h-screen overflow-hidden'>
+    <div className='max-w-screen-xl mx-auto lg:h-screen lg:overflow-hidden'>
       <Navbar/>
       <Changer />
       <Bottom/>
