@@ -26,35 +26,43 @@ function Changer() {
     }
   ];
 
-  const Arrows = [
-    {svgLeft:leftArrow},
-    {svgRight: rightArrow}
-  ];
-
+  const handlePrev = () => {
+    setCurrentIndex(prev => (prev === 0 ? obj.length - 1 : prev - 1));
+  }
+  
+  const handleNext = () => {
+    setCurrentIndex(prev => (prev === obj.length - 1 ? 0 : prev + 1));
+  }
+  
   const [ data, setData ] = useState(obj)
-  const [ Svg, setSvg ] = useState(Arrows)
+  const [ currentIndex, setCurrentIndex ] = useState(0)
 
-  console.log(data[2].imageUrl)
   return (
     <div className='grid grid-cols-[60%,40%] h-[70vh]'>
-      <img src={data[2].imageUrl} className=' h-full w-full object-cover object-center'></img>
+      <img src={data[currentIndex].imageUrl} className=' h-full w-full object-cover object-center'></img>
       <div className='flex flex-col justify-between'>
         <div className='py-24 px-20 '>
-          <h1 className='pb-4 text-[2.3vw] font-bold leading-none text-Black'>{data[2].Title}</h1>
-          <p className='text-Dark-Gray'>{data[2].desc}</p>
-          <h2 className='text-md font-semibold leading-none tracking-[1rem] uppercase flex hover:text-Very-Dark-Gray pt-10 cursor-pointer'>Shop now 
+          <h1 className='pb-4 text-[2.3vw] font-bold leading-none text-Black'>{data[currentIndex].Title}</h1>
+          <p className='text-Dark-Gray h-48'>{data[currentIndex].desc}</p>
+          <h2 className='text-md font-semibold leading-none tracking-[1rem] uppercase flex hover:text-Very-Dark-Gray cursor-pointer'>Shop now 
             <span>
               <img src={Arrow} alt="" />
             </span>
           </h2>
         </div>
         <div className='flex items-center justify-start w-full h-16'>
-          {
-            Svg.map((arrow, index)=>(
-              <img src={ index===1? arrow.svgRight : arrow.svgLeft }  key={index} className={`bg-Black py-5 px-7 ease-in-out duration-500 hover:bg-Very-Dark-Gray cursor-pointer ${index===0 && 'border-r-[1px] border-Dark-Gray'}`}/>
-            ))
-          }
-      
+          <img
+            src={leftArrow}
+            alt="Previous"
+            className='bg-black py-5 px-7 ease-in-out duration-500 hover:bg-very-dark-gray cursor-pointer border-r-[1px] border-dark-gray'
+            onClick={handlePrev}
+          />
+          <img
+            src={rightArrow}
+            alt="Next"
+            className='bg-black py-5 px-7 ease-in-out duration-500 hover:bg-very-dark-gray cursor-pointer'
+            onClick={handleNext}
+          />
         </div>
       </div>
     </div>
